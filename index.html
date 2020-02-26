@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 16px Arial;
+    }
+  </style>
+  <link href='src/picomplate.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <h2>Autocomplete</h2>
+
+  <p>Start typing:</p>
+
+  <!--Make sure the form has the autocomplete function switched off:-->
+  
+    <div class="picomplete" style="width:300px;">
+      <input id="myInput" type="text" name="myCountry" placeholder="Country">
+    </div>
+    <div class="picomplete" style="width:300px;">
+      <input id="myInput2" type="text" name="myCountry2" placeholder="Country">
+    </div>
+ 
+
+  <script src="src/picomplate.js"></script>
+  <script>
+    //request example
+    /*const paut = new PickleComplate({
+      request:{
+        url:'https://restcountries.eu/rest/v2/name/',
+        type:'POST',
+        value:'name',
+        text:'name'
+      },
+      config: {
+        type:'server',
+        target: '.picomplete',
+        clickCallback:(target,node)=>{
+          target.value = node.value;
+        }
+      }
+    });*/
+    //local exapmle
+    const paut = new PickleComplate({
+      data:[{
+        value:'Turkey',
+        text:'Türkiye'
+      },{
+        value:'Russia',
+        text:'Rusya'
+      },{
+        value:'Germany',
+        text:'Almanya'
+      },{
+        value:'Italia',
+        text:'İtalya'
+      },{
+        value:'France',
+        text:'Fransa'
+      }],
+      config: {
+        type:'local',
+        target: '.picomplete',
+        clickCallback:(target,node)=>{
+          target.value = node.value;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
