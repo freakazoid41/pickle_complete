@@ -26,6 +26,7 @@ class PickleComplate {
         // key up event
         document.querySelectorAll(this.config.target+' input').forEach(e => {
             e.addEventListener('keyup', el => {
+                if(this.config.changeCallback !== undefined && this.config.changeCallback!== null) this.config.changeCallback(el.target);
                 if(el.target.value.trim().length>0){
                     this.element = el.target;
                     this.closeAllLists();
