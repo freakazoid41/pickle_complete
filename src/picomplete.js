@@ -77,30 +77,34 @@ class PickleComplate {
 
 
     async getSuggests(el) {
-        //first create div element for suggest
-        this.sug_div = document.createElement('DIV');
-        this.sug_div.classList.add('picomplete-items');
+        
         //check container type
         if(this.config.type === 'server'){
             await this.getData(el.value.toLowerCase());
         }
         //for each item in container
-        for (let i = 0; i < this.container.length; i++) {
-            if (this.container[i].text.toLowerCase().includes(el.value.toLowerCase())) {
-                //create list item
-                let item = document.createElement('DIV');
-                //set class
-                item.classList.add('picomplete-item');
-                //set value
-                item.setAttribute('data-value',this.container[i].value);
-                //set value
-                item.setAttribute('data-index',i);
-                //set text
-                item.innerHTML = this.container[i].text;
-                //add item to list
-                this.sug_div.appendChild(item);
+        if(this.container.length > 0){
+            //first create div element for suggest
+            this.sug_div = document.createElement('DIV');
+            this.sug_div.classList.add('picomplete-items');
+            for (let i = 0; i < this.container.length; i++) {
+                if (this.container[i].text.toLowerCase().includes(el.value.toLowerCase())) {
+                    //create list item
+                    let item = document.createElement('DIV');
+                    //set class
+                    item.classList.add('picomplete-item');
+                    //set value
+                    item.setAttribute('data-value',this.container[i].value);
+                    //set value
+                    item.setAttribute('data-index',i);
+                    //set text
+                    item.innerHTML = this.container[i].text;
+                    //add item to list
+                    this.sug_div.appendChild(item);
+                }
             }
         }
+        
         //add list to input 
         if(this.sug_div !== null) this.element.parentNode.appendChild(this.sug_div);
     }
