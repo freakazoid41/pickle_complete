@@ -84,7 +84,7 @@ class PickleComplate {
         }
         //for each item in container
         for (let i = 0; i < this.container.length; i++) {
-            if (this.container[i].text.toLowerCase().includes(el.text.toLowerCase())) {
+            if (this.container[i].text.toLowerCase().includes(el.value.toLowerCase())) {
                 //create list item
                 let item = document.createElement('DIV');
                 //set class
