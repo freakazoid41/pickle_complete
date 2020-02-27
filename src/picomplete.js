@@ -24,7 +24,7 @@ class PickleComplate {
      */
     staticEvents() {
         // key up event
-        document.querySelectorAll('.picomplete input').forEach(e => {
+        document.querySelectorAll(this.config.target+' input').forEach(e => {
             e.addEventListener('keyup', el => {
                 if(el.target.value.trim().length>0){
                     this.element = el.target;
