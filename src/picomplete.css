@@ -1,10 +1,7 @@
-/*the container must be positioned relative:*/
 .picomplete {
   position: relative;
   display: inline-block;
 }
-
-
 
 .picomplete-items {
   position: absolute;
@@ -12,20 +9,22 @@
   border-bottom: none;
   border-top: none;
   z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
-  left: 0;
+  left: 15px;
   right: 0;
+  width: 92%;
+  overflow-y: scroll;
+  max-height: 185px;
+  scrollbar-width: thin !important;
 }
 
 .picomplete-items div {
-  padding: 10px;
+  padding: 3px 10px 3px 10px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
 }
 
-/*when hovering an item:*/
 .picomplete-items div:hover {
   background-color: #e9e9e9;
 }
