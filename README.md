@@ -1,6 +1,6 @@
 
 
-# Pickle Complate
+# Pickle Complete
 
 > Pickle complate is a autocomplate component written as completely pure javascript. Just send json object or request information have fun again ! :-D 
 
