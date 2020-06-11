@@ -6,8 +6,8 @@ class PickleComplate {
     constructor(obj = null) {
         //set config
         this.config = obj.config;
-        //set ajax
-        this.ajax = obj.request;
+        //set fetch parameters
+        this.req_params = obj.request;
         //target element
         this.element = null;
         //static data 
@@ -118,22 +118,22 @@ class PickleComplate {
      */
     async getData(value){
         //define if parameters is not defined
-        if(this.ajax.param===undefined){
-            this.ajax.param = {};
+        if(this.req_params.params===undefined){
+            this.req_params.params = {};
         }
         //set value to params
-        this.ajax.param.value = value;
+        this.req_params.params.value = value;
         await this.request({
-            method: this.ajax.type,
-            url: this.ajax.url,
-            data:this.ajax.param
+            method: this.req_params.type,
+            url: this.req_params.url,
+            data:this.req_params.params
         }).then(rsp => {
             this.container = [];
             if(rsp.length>0){
                 for (let i = 0; i <rsp.length; i++) {
                     this.container.push({
-                        value : rsp[i][this.ajax.value],
-                        text : rsp[i][this.ajax.text],
+                        value : rsp[i][this.req_params.value],
+                        text : rsp[i][this.req_params.text],
                     })
                 }
             }
