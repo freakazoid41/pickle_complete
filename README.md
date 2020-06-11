@@ -55,8 +55,11 @@ const pc = new PickleComplate({
       request:{
         url:'https://yourapiaddress.com',
         type:'POST',
-        value:'name',
-        text:'name'
+        value:'name',//target value key
+        text:'name',//target text key
+        params:{
+             exkey:'exvalue' //example post parameter
+        }
       },
       config: {
         type:'server',
