@@ -67,7 +67,17 @@ const pc = new PickleComplate({
         clickCallback:(target,node)=>{
           target.value = node.value;
         }
-      }
+      },
+      reqCallback : (data) => {
+              data.stitle = data.value;
+              delete data.value;
+              return data; //return new data to post request
+       },
+       changeCallback : (e,value) => {
+          //element keyup callback
+          //e => element
+          //value => input value
+       }
     });
 ```
 
