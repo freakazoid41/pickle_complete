@@ -1,4 +1,4 @@
-class PickleComplate {
+export default class PickleComplate {
     /**
      * 
      * @param {object} obj as tree object 
@@ -14,6 +14,11 @@ class PickleComplate {
         this.container = obj.data;
         //list div element
         this.sug_div = null;
+
+        if(this.config.reqCallback === undefined) this.config.reqCallback = null;
+        if(this.config.changeCallback === undefined) this.config.changeCallback = null;
+
+
         //start events
         this.staticEvents();
     }
@@ -37,6 +42,8 @@ class PickleComplate {
                 }else{
                     this.closeAllLists();
                 }
+
+                if(this.config.changeCallback != null) this.config.changeCallback(el,el.target.value);
             });
         });
 
@@ -127,14 +134,14 @@ class PickleComplate {
             method: this.req_params.type,
             url: this.req_params.url,
             data:this.req_params.params
-        }).then(rsp => {
+        },this.config.reqCallback).then(rsp => {
             this.container = [];
             if(rsp.length>0){
                 for (let i = 0; i <rsp.length; i++) {
                     this.container.push({
                         value : rsp[i][this.req_params.value],
                         text : rsp[i][this.req_params.text],
-                    })
+                    });
                 }
             }
         });
@@ -147,20 +154,20 @@ class PickleComplate {
      * system request method
      * @param {json object} rqs 
      */
-     async request(rqs, file = null) {
+     async request(rqs, reqCallback = null) {
         let fD = new FormData();
         let rsp;
-        let url_params = [];
-        let op = {
+        const url_params = [];
+        const op = {
             method: rqs['method'],
         };
+
+        if(reqCallback !== null) rqs['data'] = reqCallback(rqs['data']);
+
         if (rqs['method'] !== 'GET') {
             op.body = fD;
             for (let key in rqs['data']) {
                 fD.append(key, rqs['data'][key]);
-            }
-            if (file !== null) {
-                fD.append('file', file, file.name);
             }
         }else{
             if(!rqs['url'].includes("&")){
