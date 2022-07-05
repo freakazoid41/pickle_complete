@@ -96,7 +96,7 @@ export default class PickleComplate {
             this.sug_div = document.createElement('DIV');
             this.sug_div.classList.add('picomplete-items');
             for (let i = 0; i < this.container.length; i++) {
-                if (this.container[i].text.toLowerCase().includes(el.value.toLowerCase())) {
+                if (this.container[i].text.toLowerCase().includes(el.value.toLowerCase()) || this.container[i].value.toLowerCase().includes(el.value.toLowerCase())) {
                     //create list item
                     let item = document.createElement('DIV');
                     //set class
