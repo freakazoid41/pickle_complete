@@ -66,13 +66,14 @@ const pc = new PickleComplate({
         target: '.picomplete',
         clickCallback:(target,node)=>{
           target.value = node.value;
-        }
-      },
-      reqCallback : (data) => {
+        },
+        reqCallback : (data) => {
               data.stitle = data.value;
               delete data.value;
               return data; //return new data to post request
        },
+      },
+      
        changeCallback : (e,value) => {
           //element keyup callback
           //e => element
